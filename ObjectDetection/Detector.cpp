@@ -118,6 +118,25 @@ std::vector<Yolo::Detection> Detector::Detect(cv::Mat & InputMat)
 	return batch_res;
 }
 
+Yolo::Detection Detector::FindHighestObject(std::vector<Yolo::Detection>& Objects)
+{
+	if (Objects.size() == 0)
+		return Yolo::Detection();
+	int index = 0;
+	float HighestValue = 0;
+
+	for (size_t i = 0; i < Objects.size(); i++)
+	{
+		if (Objects[i].conf > HighestValue)
+		{
+			HighestValue = Objects[i].conf;
+			index = i;
+		}
+	}
+
+	return Objects[index];
+}
+
 void Detector::DrawRectangle(cv::Mat & InOutMat, std::vector<Yolo::Detection>& Object)
 {
 	for (size_t j = 0; j < Object.size(); j++) {
@@ -125,6 +144,13 @@ void Detector::DrawRectangle(cv::Mat & InOutMat, std::vector<Yolo::Detection>& O
 		cv::rectangle(InOutMat, r, cv::Scalar(0x27, 0xC1, 0x36), 2);
 		cv::putText(InOutMat, std::to_string((int)Object[j].class_id), cv::Point(r.x, r.y - 1), cv::FONT_HERSHEY_PLAIN, 1.2, cv::Scalar(0xFF, 0xFF, 0xFF), 2);
 	}
+}
+
+void Detector::DrawRectangle(cv::Mat & InOutMat, Yolo::Detection & Object)
+{
+	cv::Rect r = get_rect(InOutMat, Object.bbox);
+	cv::rectangle(InOutMat, r, cv::Scalar(0x27, 0xC1, 0x36), 2);
+	cv::putText(InOutMat, std::to_string((int)(Object.conf*100)), cv::Point(r.x, r.y - 1), cv::FONT_HERSHEY_PLAIN, 2, cv::Scalar(0x00, 0x00, 0xFF), 2);
 }
 
 void Detector::doInference(IExecutionContext & context, cudaStream_t & stream, void ** buffers, float * input, float * output, int batchSize)

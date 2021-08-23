@@ -52,6 +52,12 @@
     <ClCompile Include="DetectorWithQt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ScrollScale.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="uvccamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="calibrator.h">
@@ -89,6 +95,12 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="DetectorWithQt.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ScrollScale.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="uvccamera.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

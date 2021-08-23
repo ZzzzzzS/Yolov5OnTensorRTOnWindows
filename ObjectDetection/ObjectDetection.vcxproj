@@ -49,12 +49,12 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(QtMsBuild)\Qt.props" />
-    <Import Project="..\..\..\Workspace\CatPlayer\props\Opencv4.2_debug_x64.props" />
+    <Import Project="C:\Users\ZhouZishun\Workspace\CAS_Project\props\Opencv4.2_debug_x64.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(QtMsBuild)\Qt.props" />
-    <Import Project="..\..\..\Workspace\CAS_Project\props\Opencv4.2_release_x64.props" />
+    <Import Project="C:\Users\ZhouZishun\Workspace\CAS_Project\props\Opencv4.2_release_x64.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
@@ -103,7 +103,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DetectorWithQt.cpp" />
+    <ClCompile Include="ScrollScale.cpp" />
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="uvccamera.cpp" />
     <QtRcc Include="ObjectDetectionGUI.qrc" />
     <QtUic Include="ObjectDetectionGUI.ui" />
     <QtMoc Include="ObjectDetectionGUI.h" />
@@ -121,7 +123,9 @@
     <ClInclude Include="dirent.h" />
     <ClInclude Include="logging.h" />
     <ClInclude Include="macros.h" />
+    <QtMoc Include="ScrollScale.h" />
     <ClInclude Include="utils.h" />
+    <QtMoc Include="uvccamera.h" />
     <ClInclude Include="yololayer.h" />
   </ItemGroup>
   <ItemGroup>

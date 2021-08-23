@@ -4,7 +4,10 @@
 #include "Detector.h"
 #include <qmutex.h>
 
-class DetectorWithQt : public QObject , Detector
+Q_DECLARE_METATYPE(cv::Mat);
+Q_DECLARE_METATYPE(std::vector<Yolo::Detection>);
+
+class DetectorWithQt : public QObject ,public Detector
 {
 	Q_OBJECT
 

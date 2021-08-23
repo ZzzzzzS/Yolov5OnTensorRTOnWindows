@@ -5,6 +5,8 @@
 #include <qthread.h>
 #include "DetectorWithQt.h"
 #include <opencv2/opencv.hpp>
+#include <opencv2/videoio.hpp>
+#include "uvccamera.h"
 
 class ObjectDetectionGUI : public QWidget
 {
@@ -18,6 +20,12 @@ private:
 	DetectorWithQt* Detector;
 	QThread* DetectorThread;
 
+	UVCCamera* Camera;
+
 signals:
 	void TriggerDetect(cv::Mat In, int Timestamp);
+
+private slots:
+
+	void Detected(std::vector<Yolo::Detection> result, int Timestamp);
 };

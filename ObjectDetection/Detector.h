@@ -21,9 +21,12 @@ public:
     ~Detector();
 
 	bool LoadEngine(std::string FileName);
-	std::vector<Yolo::Detection> Detect(cv::Mat& InputMat);
 
-	void DrawRectangle(cv::Mat& InOutMat,std::vector<Yolo::Detection>& Object);
+	std::vector<Yolo::Detection> Detect(cv::Mat& InputMat);
+	static Yolo::Detection FindHighestObject(std::vector<Yolo::Detection>& Objects);
+	static void DrawRectangle(cv::Mat& InOutMat,std::vector<Yolo::Detection>& Object);
+	static void DrawRectangle(cv::Mat& InOutMat, Yolo::Detection& Object);
+	float CONF_THRESH = 0.5;
 	
 private:
 	nvinfer1::IRuntime* runtime;
@@ -32,7 +35,6 @@ private:
 
 	static const int DEVICE = 0;  // GPU id
 	const float NMS_THRESH = 0.4;
-	const float CONF_THRESH = 0.5;
 	static const int BATCH_SIZE = 1;
 
 	// stuff we know about the network and the input/output blobs

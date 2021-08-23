@@ -8,19 +8,17 @@ DetectorWithQt::DetectorWithQt(QString FileName,QObject *parent)
 	Detector(FileName.toStdString())
 {
 	qRegisterMetaType<cv::Mat>("CvMat");
+	qRegisterMetaType<std::vector<Yolo::Detection>>("ObjectVector");
 }
 
 DetectorWithQt::~DetectorWithQt()
 {
+	while (this->Locker.tryLock());
 }
 
 void DetectorWithQt::AsynDetect(cv::Mat Input, int Timestamp)
 {
 	QMutexLocker Mutexlocker(&this->Locker);
-	qDebug() << Timestamp;
-	int i = 0;
-	while (i<2000000000)
-	{
-		i++;
-	}
+	std::vector<Yolo::Detection> result = this->Detect(Input);
+	emit this->Detected(result, Timestamp);
 }
