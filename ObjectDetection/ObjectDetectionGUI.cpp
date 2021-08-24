@@ -19,9 +19,8 @@ ObjectDetectionGUI::ObjectDetectionGUI(QWidget *parent)
 
 	QObject::connect(this->ui.pushButton, &QPushButton::clicked, [this](){
 		//this->Camera->StartCamera("C:/Users/ZhouZishun/Videos/288840339/1/1.mp4");
-		this->Camera->StartCamera("0");
+		this->Camera->StartCamera(this->ui.lineEdit->text());
 	});
-
 	QObject::connect(this->Camera, &UVCCamera::CameraStarted, [this]() {
 		cv::Mat frame;
 		while (frame.empty())
